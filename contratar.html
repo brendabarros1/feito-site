@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contratar · Feito</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#20242D">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js" defer></script>
+<script src="assets/site.js" defer></script>
+<script src="assets/contratar.js" defer></script>
+</head>
+<body>
+
+<header class="wrap site-header">
+  <a href="index.html" class="carimbo" aria-label="Feito, voltar ao início">feito<span class="ponto">.</span></a>
+  <nav class="site-nav" aria-label="Principal">
+    <a class="btn btn--contorno btn--sm" href="#" data-whats="Oi! Estou contratando pelo site e tenho uma dúvida.">Dúvidas? WhatsApp</a>
+  </nav>
+</header>
+
+<main class="narrow" style="padding-bottom:96px;display:flex;flex-direction:column;gap:28px">
+
+  <div class="resumo-servico" id="resumo">
+    <div style="display:flex;flex-direction:column;gap:4px">
+      <span class="eyebrow">Você está contratando</span>
+      <span class="display" style="font-size:26px" id="resumo-nome">Escolha um serviço</span>
+    </div>
+    <div style="display:flex;gap:24px;align-items:flex-end">
+      <div><div class="preco-rotulo" id="resumo-rotulo">Preço fechado</div><div class="preco" id="resumo-preco">-</div></div>
+      <div><div class="preco-rotulo">Prazo</div><div style="font-weight:700" id="resumo-prazo">-</div></div>
+    </div>
+  </div>
+
+  <div class="campo" id="troca-servico">
+    <label for="servico-select">Serviço</label>
+    <select id="servico-select" class="input"></select>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;justify-content:space-between;font-size:15px;color:var(--texto-3);font-weight:500"><span id="etapa-rotulo">Etapa 1 de 3 · Seus dados</span></div>
+    <div class="progresso" role="progressbar" aria-label="Progresso do pedido" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1"><div id="progresso" style="width:33%"></div></div>
+  </div>
+
+  <!-- Netlify Forms: todos os campos de todos os serviços precisam estar neste HTML
+       para o Netlify reconhecê-los. Os blocos que não valem para o serviço escolhido
+       ficam desativados e não são enviados. -->
+  <form name="pedido" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="form-pedido" novalidate>
+    <input type="hidden" name="form-name" value="pedido">
+    <p class="hp"><label>Não preencha: <input name="bot-field"></label></p>
+    <input type="hidden" name="codigo">
+    <input type="hidden" name="servico">
+    <input type="hidden" name="preco">
+    <input type="hidden" name="utm_source">
+    <input type="hidden" name="utm_medium">
+    <input type="hidden" name="utm_campaign">
+    <input type="hidden" name="aceite_data">
+
+    <!-- Etapa 1 -->
+    <fieldset class="bloco" data-etapa="1">
+      <legend class="display" style="font-size:32px;margin-bottom:8px">Seus dados</legend>
+      <div class="campo"><label for="nome">Nome completo</label><input class="input" id="nome" name="nome" autocomplete="name" required></div>
+      <div class="campo"><label for="email">E-mail</label><input class="input" id="email" name="email" type="email" autocomplete="email" required></div>
+      <div class="campo"><label for="whatsapp">WhatsApp com DDD</label><input class="input" id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="(11) 90000-0000" required pattern="[\d\s()+-]{10,}"></div>
+      <div class="campo"><label for="negocio">Nome do negócio</label><input class="input" id="negocio" name="negocio" autocomplete="organization" required></div>
+      <div class="campo"><label for="segmento">Segmento</label>
+        <select class="input" id="segmento" name="segmento" required>
+          <option value="">Escolha</option>
+          <option>Saúde e clínicas</option><option>Pet</option><option>Beleza e estética</option><option>Alimentação</option><option>Serviços residenciais</option><option>Varejo</option><option>Profissional autônomo</option><option>Outro</option>
+        </select>
+      </div>
+      <div class="campo"><label for="cidade">Cidade e UF</label><input class="input" id="cidade" name="cidade" autocomplete="address-level2" placeholder="Sorocaba, SP" required></div>
+      <div class="campo"><label for="documento">CPF ou CNPJ <span class="ajuda">para a nota fiscal</span></label><input class="input" id="documento" name="documento" inputmode="numeric" required></div>
+      <div class="campo"><label for="origem">Como conheceu a Feito</label>
+        <select class="input" id="origem" name="como_conheceu">
+          <option value="">Escolha</option><option>Google</option><option>Instagram</option><option>Indicação de cliente</option><option>Indicação de parceiro</option><option>Outro</option>
+        </select>
+      </div>
+      <div class="campo"><label for="ref">Código de indicação <span class="ajuda">opcional</span></label><input class="input" id="ref" name="codigo_indicacao"></div>
+    </fieldset>
+
+    <!-- Etapa 2: blocos por serviço -->
+    <div data-etapa="2" hidden class="bloco">
+      <h2 class="display" style="font-size:32px">Briefing</h2>
+      <p class="muted" style="margin:-8px 0 0">Responda do seu jeito. Se tiver dúvida em alguma pergunta, escreva "não sei" que a gente ajuda.</p>
+
+      <fieldset class="bloco" data-servicos="marca comeco">
+        <legend class="eyebrow" style="margin-bottom:4px">Marca</legend>
+        <div class="campo"><label for="marca_vende">O que o negócio vende?</label><textarea class="input" id="marca_vende" name="marca_vende" required></textarea></div>
+        <div class="campo"><label for="marca_cliente">Quem é o cliente ideal?</label><input class="input" id="marca_cliente" name="marca_cliente" required></div>
+        <div class="campo"><label for="marca_palavras">Três palavras que descrevem como quer ser percebido</label><input class="input" id="marca_palavras" name="marca_palavras" placeholder="próximo, confiável, moderno" required></div>
+        <div class="campo"><label for="marca_cores">Cores que gosta e cores que não quer</label><input class="input" id="marca_cores" name="marca_cores"></div>
+        <div class="campo"><label for="marca_ref">Links de marcas de referência <span class="ajuda">até 3</span></label><textarea class="input" id="marca_ref" name="marca_referencias"></textarea></div>
+        <div class="campo"><label for="marca_conc">Principais concorrentes</label><input class="input" id="marca_conc" name="marca_concorrentes"></div>
+        <fieldset class="campo"><legend>Onde a marca vai aparecer</legend>
+          <div class="opcoes">
+            <label><input type="checkbox" name="marca_usos" value="Instagram">Instagram</label>
+            <label><input type="checkbox" name="marca_usos" value="Fachada">Fachada</label>
+            <label><input type="checkbox" name="marca_usos" value="Uniforme">Uniforme</label>
+            <label><input type="checkbox" name="marca_usos" value="Embalagem">Embalagem</label>
+            <label><input type="checkbox" name="marca_usos" value="Site">Site</label>
+            <label><input type="checkbox" name="marca_usos" value="Cartão">Cartão</label>
+          </div>
+        </fieldset>
+        <div class="campo"><label for="marca_atual">Já tem logotipo? Cole o link do arquivo <span class="ajuda">Google Drive, Dropbox ou similar; opcional</span></label><input class="input" id="marca_atual" name="marca_logo_atual" type="url" placeholder="https://"></div>
+      </fieldset>
+
+      <fieldset class="bloco" data-servicos="perfil comeco mensal">
+        <legend class="eyebrow" style="margin-bottom:4px">Instagram</legend>
+        <div class="campo"><label for="perfil_at">@ do Instagram</label><input class="input" id="perfil_at" name="perfil_arroba" placeholder="@seunegocio" required></div>
+        <div class="campo"><label for="perfil_obj">Objetivo principal do perfil</label>
+          <select class="input" id="perfil_obj" name="perfil_objetivo" required><option value="">Escolha</option><option>Vender pelo direct</option><option>Agendar atendimentos</option><option>Mostrar portfólio</option><option>Gerar confiança</option></select></div>
+        <div class="campo"><label for="perfil_dest">Serviços ou produtos para destacar</label><textarea class="input" id="perfil_dest" name="perfil_destaques" required></textarea></div>
+        <div class="campo"><label for="perfil_tom">Tom desejado</label>
+          <select class="input" id="perfil_tom" name="perfil_tom"><option value="">Escolha</option><option>Próximo</option><option>Sofisticado</option><option>Divertido</option><option>Técnico</option></select></div>
+        <div class="campo"><label for="perfil_fotos">Link da pasta com fotos do negócio <span class="ajuda">até 15 fotos</span></label><input class="input" id="perfil_fotos" name="perfil_fotos" type="url" placeholder="https://"></div>
+        <p class="aviso" style="margin:0">Nunca pedimos sua senha. O acesso ao perfil é feito por convite no Meta Business, e explicamos como depois do pedido.</p>
+      </fieldset>
+
+      <fieldset class="bloco" data-servicos="google comeco mensal">
+        <legend class="eyebrow" style="margin-bottom:4px">Google</legend>
+        <fieldset class="campo"><legend>Onde você atende?</legend>
+          <div class="opcoes">
+            <label><input type="radio" name="google_atendimento" value="Endereço fixo" required>Endereço fixo</label>
+            <label><input type="radio" name="google_atendimento" value="Na casa do cliente">Na casa do cliente</label>
+            <label><input type="radio" name="google_atendimento" value="Os dois">Os dois</label>
+          </div>
+        </fieldset>
+        <div class="campo"><label for="google_end">Endereço ou área de atendimento</label><input class="input" id="google_end" name="google_endereco" required></div>
+        <div class="campo"><label for="google_hor">Horário de funcionamento</label><input class="input" id="google_hor" name="google_horario" placeholder="Seg a sex, 9h às 18h" required></div>
+        <div class="campo"><label for="google_tel">Telefone público</label><input class="input" id="google_tel" name="google_telefone" type="tel"></div>
+        <div class="campo"><label for="google_serv">Lista de serviços</label><textarea class="input" id="google_serv" name="google_servicos"></textarea></div>
+        <div class="campo"><label for="google_link">Já existe perfil no Google? Cole o link <span class="ajuda">opcional</span></label><input class="input" id="google_link" name="google_perfil_atual" type="url" placeholder="https://"></div>
+      </fieldset>
+
+      <fieldset class="bloco" data-servicos="site">
+        <legend class="eyebrow" style="margin-bottom:4px">Site</legend>
+        <div class="campo"><label for="site_dom">Já tem domínio? Qual? <span class="ajuda">deixe em branco se não tiver</span></label><input class="input" id="site_dom" name="site_dominio" placeholder="seunegocio.com.br"></div>
+        <fieldset class="campo"><legend>Seções desejadas</legend>
+          <div class="opcoes">
+            <label><input type="checkbox" name="site_secoes" value="Sobre">Sobre</label>
+            <label><input type="checkbox" name="site_secoes" value="Serviços">Serviços</label>
+            <label><input type="checkbox" name="site_secoes" value="Depoimentos">Depoimentos</label>
+            <label><input type="checkbox" name="site_secoes" value="Galeria">Galeria</label>
+            <label><input type="checkbox" name="site_secoes" value="Mapa">Mapa</label>
+            <label><input type="checkbox" name="site_secoes" value="Contato">Contato</label>
+          </div>
+        </fieldset>
+        <div class="campo"><label for="site_txt">Textos que já existem <span class="ajuda">opcional</span></label><textarea class="input" id="site_txt" name="site_textos"></textarea></div>
+        <div class="campo"><label for="site_mat">Link da pasta com logotipo e fotos</label><input class="input" id="site_mat" name="site_materiais" type="url" placeholder="https://"></div>
+        <div class="campo"><label for="site_cont">WhatsApp e endereço que vão aparecer no site</label><input class="input" id="site_cont" name="site_contato" required></div>
+      </fieldset>
+
+      <fieldset class="bloco" data-servicos="video">
+        <legend class="eyebrow" style="margin-bottom:4px">Vídeo</legend>
+        <div class="campo"><label for="video_mat">Link da pasta com o material bruto</label><input class="input" id="video_mat" name="video_material" type="url" placeholder="https://" required></div>
+        <div class="campo"><label for="video_obj">Objetivo dos vídeos</label><input class="input" id="video_obj" name="video_objetivo" required></div>
+        <div class="campo"><label for="video_ref">Referência de estilo <span class="ajuda">link opcional</span></label><input class="input" id="video_ref" name="video_referencia" type="url" placeholder="https://"></div>
+        <fieldset class="campo"><legend>Quer legendas?</legend>
+          <div class="opcoes">
+            <label><input type="radio" name="video_legendas" value="Sim" required>Sim</label>
+            <label><input type="radio" name="video_legendas" value="Não">Não</label>
+          </div>
+        </fieldset>
+      </fieldset>
+
+      <fieldset class="bloco" data-servicos="mensal">
+        <legend class="eyebrow" style="margin-bottom:4px">Acompanhamento mensal</legend>
+        <div class="campo"><label for="mensal_obj">Objetivos para os próximos 3 meses</label><textarea class="input" id="mensal_obj" name="mensal_objetivos" required></textarea></div>
+        <div class="campo"><label for="mensal_temas">Temas obrigatórios e temas proibidos</label><textarea class="input" id="mensal_temas" name="mensal_temas"></textarea></div>
+        <div class="campo"><label for="mensal_aprov">Quem aprova as publicações? Nome e WhatsApp</label><input class="input" id="mensal_aprov" name="mensal_aprovador" required></div>
+      </fieldset>
+    </div>
+
+    <!-- Etapa 3 -->
+    <fieldset class="bloco" data-etapa="3" hidden>
+      <legend class="display" style="font-size:32px;margin-bottom:8px">Revisão e aceite</legend>
+      <div class="aviso" id="revisao"></div>
+      <label class="check"><input type="checkbox" name="aceite_termos" value="sim" required><span>Li e aceito os <a href="termos.html" target="_blank" rel="noopener">Termos de contratação</a>, incluindo escopo, rodadas de ajuste, prazo e garantia.</span></label>
+      <label class="check"><input type="checkbox" name="aceite_dados" value="sim" required><span>Autorizo a Feito a tratar meus dados para executar este serviço, conforme a <a href="privacidade.html" target="_blank" rel="noopener">Política de privacidade</a>.</span></label>
+      <label class="check"><input type="checkbox" name="aceite_novidades" value="sim"><span>Quero receber novidades e ofertas da Feito.</span></label>
+    </fieldset>
+
+    <p class="erro" id="erro" role="alert" hidden></p>
+
+    <div class="acoes" style="margin-top:28px">
+      <button type="button" class="btn btn--coral" id="btn-avancar">Continuar</button>
+      <button type="submit" class="btn btn--coral" id="btn-enviar" hidden>Ir para o pagamento</button>
+      <button type="button" class="link-btn" id="btn-voltar" hidden>Voltar</button>
+    </div>
+  </form>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raio-X grátis do seu marketing em 2 minutos · Feito</title>
+<meta name="description" content="Responda 8 perguntas sobre marca, Instagram, Google, site e vídeo e receba uma nota por área e o que ajustar primeiro.">
+<meta name="theme-color" content="#20242D">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/config.js" defer></script>
+<script src="assets/site.js" defer></script>
+<script src="assets/raio-x.js" defer></script>
+</head>
+<body>
+
+<header class="wrap site-header">
+  <a href="index.html" class="carimbo" aria-label="Feito, voltar ao início">feito<span class="ponto">.</span></a>
+  <span class="eyebrow">Raio-X grátis</span>
+</header>
+
+<main class="narrow" style="padding-top:24px;padding-bottom:96px">
+
+  <section id="tela-intro" style="display:flex;flex-direction:column;gap:28px;padding-top:32px">
+    <div style="display:flex;gap:12px" aria-hidden="true">
+      <span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5z"/></svg></span>
+      <span class="ico"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM17 7h.01"/></svg></span>
+      <span class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11a7 7 0 1 1 14 0c0 4.9-7 11-7 11zM12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg></span>
+      <span class="ico"><svg viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 9h18M7 7h.01"/></svg></span>
+      <span class="ico"><svg viewBox="0 0 24 24"><path d="M4 6h12v12H4zM16 10l4-2.5v9L16 14"/></svg></span>
+    </div>
+    <h1 class="display" style="font-size:clamp(42px,6vw,72px);line-height:.98;letter-spacing:-0.045em">Seu marketing em 2 minutos<span class="ponto">.</span></h1>
+    <p class="lead">8 perguntas sobre marca, Instagram, Google, site e vídeo. No final você recebe uma nota por área e o que ajustar primeiro.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:10px">
+      <span class="tag tag--salvia">Grátis</span><span class="tag">8 perguntas</span><span class="tag">Resultado na hora</span>
+    </div>
+    <div class="acoes">
+      <button type="button" class="btn btn--coral" id="btn-comecar">Começar o Raio-X</button>
+      <span class="muted" style="font-size:15px">Pedimos nome e WhatsApp só para mostrar o resultado.</span>
+    </div>
+  </section>
+
+  <section id="tela-pergunta" hidden style="display:flex;flex-direction:column;gap:28px">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;justify-content:space-between;font-size:15px;color:var(--texto-3);font-weight:500"><span id="q-num">Pergunta 1 de 8</span><span id="q-area"></span></div>
+      <div class="progresso" role="progressbar" aria-label="Progresso do Raio-X" aria-valuemin="1" aria-valuemax="8" aria-valuenow="1"><div id="q-progresso"></div></div>
+    </div>
+    <div style="display:flex;gap:18px;align-items:flex-start">
+      <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path id="q-icone" d=""/></svg></span>
+      <h1 class="display" id="q-texto" style="font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-0.03em" tabindex="-1"></h1>
+    </div>
+    <div id="q-opcoes" style="display:flex;flex-direction:column;gap:12px"></div>
+    <div><button type="button" class="link-btn" id="btn-voltar-q">Voltar</button></div>
+  </section>
+
+  <section id="tela-cadastro" hidden style="display:flex;flex-direction:column;gap:24px;padding-top:16px">
+    <span class="carimbo carimbo--g" style="align-self:flex-start;font-size:48px;border-width:5px;border-radius:18px;padding:4px 18px 10px" aria-hidden="true">pronto<span class="ponto">.</span></span>
+    <h1 class="display h-sec" tabindex="-1" id="cad-titulo">Seu Raio-X está pronto.</h1>
+    <p class="lead">Diga para quem é o resultado. A gente também manda uma cópia no seu WhatsApp.</p>
+    <form name="raio-x" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="form-raiox" class="bloco">
+      <input type="hidden" name="form-name" value="raio-x">
+      <p class="hp"><label>Não preencha: <input name="bot-field"></label></p>
+      <input type="hidden" name="nota_geral">
+      <input type="hidden" name="nota_marca">
+      <input type="hidden" name="nota_instagram">
+      <input type="hidden" name="nota_google">
+      <input type="hidden" name="nota_site">
+      <input type="hidden" name="nota_video">
+      <input type="hidden" name="servico_recomendado">
+      <input type="hidden" name="respostas">
+      <input type="hidden" name="utm_source">
+      <input type="hidden" name="utm_medium">
+      <input type="hidden" name="utm_campaign">
+      <input type="hidden" name="codigo_indicacao">
+      <div class="campo"><label for="rx-nome">Seu nome</label><input class="input" id="rx-nome" name="nome" autocomplete="given-name" required minlength="2"></div>
+      <div class="campo"><label for="rx-wa">WhatsApp com DDD</label><input class="input" id="rx-wa" name="whatsapp" type="tel" autocomplete="tel" placeholder="(11) 90000-0000" required pattern="[\d\s()+-]{10,}"></div>
+      <div class="campo"><label for="rx-neg">Nome do negócio</label><input class="input" id="rx-neg" name="negocio" autocomplete="organization"></div>
+      <div class="campo"><label for="rx-ig">@ do Instagram <span class="ajuda">opcional</span></label><input class="input" id="rx-ig" name="instagram" placeholder="@seunegocio"></div>
+      <label class="check"><input type="checkbox" name="consentimento" value="sim" required><span>Autorizo a Feito a usar esses dados para enviar meu resultado e entrar em contato, conforme a <a href="privacidade.html" target="_blank" rel="noopener">Política de privacidade</a>.</span></label>
+      <p class="erro" id="rx-erro" role="alert" hidden></p>
+      <div class="acoes">
+        <button type="submit" class="btn btn--coral" id="btn-resultado">Ver meu resultado</button>
+        <button type="button" class="link-btn" id="btn-voltar-cad">Voltar</button>
+      </div>
+    </form>
+  </section>
+
+  <section id="tela-resultado" hidden style="display:flex;flex-direction:column;gap:36px">
+    <div style="display:flex;flex-wrap:wrap;gap:32px;align-items:center">
+      <div class="nota" aria-hidden="true"><div class="display" style="font-size:72px;line-height:1" id="r-nota">0</div><div class="eyebrow" style="color:var(--grafite);letter-spacing:.16em">de 100</div></div>
+      <div style="flex:1 1 300px;display:flex;flex-direction:column;gap:8px">
+        <div class="eyebrow" id="r-quem">Raio-X</div>
+        <h1 class="display h-sec" id="r-faixa" tabindex="-1"></h1>
+        <p class="lead" id="r-texto"></p>
+        <p class="sr-only" id="r-nota-sr"></p>
+      </div>
+    </div>
+
+    <div class="card" style="gap:18px">
+      <h2 class="display" style="font-size:24px">Nota por área</h2>
+      <div id="r-areas" style="display:flex;flex-direction:column;gap:16px"></div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <h2 class="display" style="font-size:24px">O que ajustar primeiro</h2>
+      <div id="r-dicas" style="display:flex;flex-direction:column;gap:12px"></div>
+    </div>
+
+    <div class="mensal" style="flex-direction:column;align-items:stretch;gap:14px">
+      <div class="eyebrow" style="color:var(--coral)">O serviço que resolve</div>
+      <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:flex-end">
+        <div style="flex:1 1 320px;display:flex;flex-direction:column;gap:8px">
+          <span class="tag tag--coral" style="align-self:flex-start" id="rec-nome"></span>
+          <div class="display" style="font-size:30px;line-height:1.08" id="rec-necessidade"></div>
+          <p id="rec-inclui"></p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start">
+          <div><div class="preco-rotulo" style="color:var(--claro-sobre-escuro)" id="rec-rotulo"></div><div class="display" style="font-size:34px;line-height:1" id="rec-preco"></div></div>
+          <a class="btn btn--coral" id="rec-cta" href="contratar.html">Quero esse</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="acoes">
+      <a class="btn btn--contorno" href="#" id="r-whats" target="_blank" rel="noopener">Tirar dúvida no WhatsApp</a>
+      <a href="index.html#servicos" style="font-weight:500">Ver todos os serviços</a>
+      <button type="button" class="link-btn" id="btn-refazer">Refazer o Raio-X</button>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>
